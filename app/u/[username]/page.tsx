@@ -304,7 +304,7 @@ export default async function PublicProfilePage({
 
                     <img
                       src={user.avatar}
-                      alt={user.name}
+                      alt={user.name ?? user.username ?? "Developer profile"}
                       className="
                         h-28 w-28
                         rounded-full

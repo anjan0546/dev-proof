@@ -7,6 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id          String       @id @default(cuid())
+  githubId    String       @unique
+  username  String         @unique
+  name        String?
+  email       String?      @unique
+  avatar      String?
+  bio         String?
+  skills      String?
+  createdAt   DateTime     @default(now())
+
+  repositories Repository[]
+}
+
 model Repository {
   id                String  @id @default(cuid())
   repoId            Int
@@ -16,30 +30,13 @@ model Repository {
   stars             Int     @default(0)
   forks             Int     @default(0)
   url               String
-  customDescription String?
-  techStack         String?
-  liveUrl           String?
-
-  userId String
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, repoId])
-}
-
-model Repository {
-  id                String @id @default(cuid())
-  repoId            Int    @unique
-  name              String
-  description       String?
-  language          String?
-  stars             Int
-  forks             Int
-  url               String
 
   customDescription String?
   techStack         String?
   liveUrl           String?
 
   userId            String
-  user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, repoId])
 }

@@ -93,8 +93,7 @@ export async function POST(request: Request) {
         data: {
           githubId,
 
-          username:
-            session.user.username ?? null,
+          username: session.user.username ?? session.user.name ?? githubId,
 
           name:
             session.user.name ??
