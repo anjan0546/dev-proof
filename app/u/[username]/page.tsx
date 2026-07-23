@@ -95,20 +95,19 @@ export default async function PublicProfilePage({
       .filter(Boolean) ?? [];
 
   const totalVerifiedCommits =
-    repositoriesWithCommits.reduce(
-      (total, repo) => {
-        const verified =
-          repo.commits.filter(
-            (commit) =>
-              commit.author?.login?.toLowerCase() ===
-              user.username?.toLowerCase()
-          ).length;
+  repositoriesWithCommits.reduce(
+    (total: number, repo) => {
+      const verified =
+        repo.commits.filter(
+          (commit: GitHubCommit) =>
+            commit.author?.login?.toLowerCase() ===
+            user.username?.toLowerCase()
+        ).length;
 
-        return total + verified;
-      },
-      0
-    );
-
+      return total + verified;
+    },
+    0
+  );
   return (
     <main className="relative min-h-screen overflow-hidden bg-zinc-950 text-white">
 
@@ -608,22 +607,20 @@ export default async function PublicProfilePage({
               {repositoriesWithCommits.map((repo) => {
 
                 const technologies =
-                  repo.techStack
-                    ?.split(",")
-                    .map((tech) => tech.trim())
-                    .filter(Boolean) ??
-                  (repo.language
-                    ? [repo.language]
-                    : []);
+  repo.techStack
+    ?.split(",")
+    .map((tech: string) => tech.trim())
+    .filter(Boolean) ??
+  (repo.language
+    ? [repo.language]
+    : []);
 
-                const developerCommits =
-                  repo.commits.filter(
-                    (commit) =>
-                      commit.author?.login
-                        ?.toLowerCase() ===
-                      user.username?.toLowerCase()
-                  );
-
+const developerCommits =
+  repo.commits.filter(
+    (commit: GitHubCommit) =>
+      commit.author?.login?.toLowerCase() ===
+      user.username?.toLowerCase()
+  );
                 const latestDeveloperCommit =
                   developerCommits.length > 0
                     ? developerCommits[0]
