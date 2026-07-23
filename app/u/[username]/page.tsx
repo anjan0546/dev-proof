@@ -91,7 +91,7 @@ export default async function PublicProfilePage({
   const skills =
     user.skills
       ?.split(",")
-      .map((skill) => skill.trim())
+      .map((skill: string) => skill.trim())
       .filter(Boolean) ?? [];
 
   const totalVerifiedCommits =
