@@ -802,7 +802,7 @@ const developerCommits =
 
                         <div className="mt-6 flex flex-wrap gap-2">
 
-                          {technologies.map((tech) => (
+                          {technologies.map((tech: string) => (
 
                             <span
                               key={tech}
