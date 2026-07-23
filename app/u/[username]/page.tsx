@@ -39,7 +39,7 @@ export default async function PublicProfilePage({
   // =========================================
 
   const repositoriesWithCommits = await Promise.all(
-    user.repositories.map(async (repo) => {
+    user.repositories.map(async (repo: (typeof user.repositories)[number]) => {
       try {
         const repoUrl = new URL(repo.url);
 
