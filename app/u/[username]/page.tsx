@@ -411,7 +411,7 @@ export default async function PublicProfilePage({
 
                 <div className="flex flex-wrap gap-2">
 
-                  {skills.map((skill) => (
+                 {skills.map((skill: string) => (
 
                     <span
                       key={skill}
